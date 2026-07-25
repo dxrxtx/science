@@ -1,0 +1,17 @@
+{
+  "extraKnownMarketplaces": {
+    "life-sciences": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/life-sciences"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "pubmed@life-sciences": true,
+    "biorxiv@life-sciences": true,
+    "clinical-trials@life-sciences": true,
+    "chembl@life-sciences": true,
+    "open-targets@life-sciences": true
+  }
+}
