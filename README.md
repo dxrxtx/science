@@ -4,16 +4,17 @@
 이 프로젝트에 설치·구성한 것입니다. 모든 skill은 Claude Code가 `.claude/skills/`에서
 자동 인식하며, 관련 작업 시 자동 호출됩니다.
 
-설치 기준일: **2026-07-25** · 대상 에이전트: **Claude Code** · **총 1,837개 skill**
+설치 기준일: **2026-07-25** · 대상 에이전트: **Claude Code** · **총 2,419개 skill**
 
 ## 설치된 skill 구성
 
-LinkedIn 랭킹 10개 저장소를 실제 설치·검증한 결과, **라이선스가 허용하고 Claude Code
-포맷으로 로드되는 9개**를 설치했습니다. (1개 제외 — 아래 참조)
+LinkedIn 랭킹 10개 저장소를 실제 설치·검증해, **라이선스가 허용하고 Claude Code
+포맷으로 로드되는 것**을 모두 설치했습니다.
 
 | 랭킹 | 저장소 | 접두어 | 개수 | 라이선스 | 설치 방식 |
 |---|---|---|---|---|---|
 | 1 | `K-Dense-AI/scientific-agent-skills` | (없음) | 149 | MIT | `npx skills` |
+| 2 | `FreedomIntelligence/OpenClaw-Medical-Skills` | `openclaw-` | 582 | MIT 부분¹ | vendor(복사) |
 | 3 | `google-deepmind/science-skills` | `gdm-` | 38 | Apache-2.0 | vendor(복사) |
 | 4 | `mims-harvard/ToolUniverse` | `tuniv-` | 153 | Apache-2.0 | vendor(복사) |
 | 5 | `aipoch/medical-research-skills` | `aipoch-` | 604 | MIT | vendor(복사) |
@@ -21,17 +22,22 @@ LinkedIn 랭킹 10개 저장소를 실제 설치·검증한 결과, **라이선�
 | 7 | `GPTomics/bioSkills` | `bio-` | 561 | MIT | `install-claude.sh` |
 | 8 | `bioMate-AI/biomate-bioconductor-kb` | `biomate-` | 200 | CC-BY-4.0 | vendor(복사) |
 | 9 | `anthropics/life-sciences` (파일형) | `anthropic-` | 6 | 각 LICENSE | 복사 |
-| 10 | `NVIDIA-BioNeMo/bionemo-agent-toolkit` | (없음) | 20 | Apache-2.0/CC-BY-4.0 | `npx skills` |
+| 10 | `NVIDIA-BioNeMo/bionemo-agent-toolkit` | (없음) | 31 | Apache-2.0/CC-BY-4.0 | `npx skills` |
 
 > 접두어는 **저장소 간 이름 충돌 방지 + 출처 식별**용입니다. vendor 설치 시 각 SKILL.md의
 > frontmatter를 `name`(접두어 적용)+`description`으로 **YAML-안전하게 재작성**해,
 > 원본에 있던 YAML 문법 오류(미인용 콜론 등)를 모두 정리했습니다.
 
-## ⛔ 제외된 저장소 (1개)
-
-| 랭킹 | 저장소 | 제외 사유 |
-|---|---|---|
-| 2 | `FreedomIntelligence/OpenClaw-Medical-Skills` | 최상위 라이선스 없음 + 파일별 **"All Rights Reserved / 무단 복제 금지(proprietary)"** 명시. 재배포 시 저작권 침해 → 설치·커밋하지 않음. 또한 **OpenClaw 프레임워크 전용** 포맷이라 `name`/`description` frontmatter가 없어 Claude Code에서 그대로 로드되지도 않음. |
+### ¹ OpenClaw 부분 설치 (중요)
+OpenClaw는 12개+ 저장소를 통합한 **애그리게이터**로, 파일마다 라이선스가 다릅니다.
+- 저장소 README는 **MIT를 선언**(배지)하나 최상위 `LICENSE` 파일은 부재.
+- 전체 896개 중 **309개**는 `MD BABU MIA` 저작권의 **"All Rights Reserved / proprietary
+  / 무단 복제 금지"** 명시 → **재배포 불가라 제외**.
+- 제한 문구가 없는 **582개(MIT 선언 범위)만 설치**했습니다. 제외된 309개는 로드도 안 되는
+  (HTML 주석으로 감싼) OpenClaw 전용 포맷과 정확히 일치합니다.
+- 주의: 최상위 LICENSE 파일이 없어 MIT 근거는 저장소의 공개 선언(배지)에 의존합니다.
+  포함된 582개 중 타 저장소에서 재번들된 것이 있을 수 있어, 상업적 재배포 전에는
+  개별 출처 확인을 권장합니다.
 
 ## Anthropic Life Sciences — MCP 플러그인 (별도 구성)
 

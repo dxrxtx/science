@@ -32,6 +32,14 @@ python3 "$VENDOR" "$TMP/clawbio"             "clawbio-"
 python3 "$VENDOR" "$TMP/biomate/skills"      "biomate-"
 python3 "$VENDOR" "$TMP/aipoch"              "aipoch-"
 python3 "$VENDOR" "$TMP/tooluniverse/skills" "tuniv-"
+
+echo "==> OpenClaw-Medical-Skills (MIT subset only — drop proprietary files)"
+clone FreedomIntelligence/OpenClaw-Medical-Skills "$TMP/openclaw"
+# Exclude any skill whose SKILL.md carries an 'All Rights Reserved' / proprietary
+# notice (re-bundled third-party content that is NOT redistributable).
+for f in $(grep -rl "All Rights Reserved\|proprietary and confidential" \
+             "$TMP/openclaw/skills" --include=SKILL.md); do rm -rf "$(dirname "$f")"; done
+python3 "$VENDOR" "$TMP/openclaw/skills"     "openclaw-"
 rm -rf "$TMP"
 
 echo "==> stripping bundled data files > ${STRIP_MB}MB (keeps SKILL.md + scripts)"
