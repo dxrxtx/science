@@ -1,1 +1,0 @@
-# gwas-pipeline tests

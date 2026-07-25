@@ -1,1 +1,0 @@
-# clinical-variant-reporter tests

@@ -6,7 +6,23 @@ Top 10 저장소**를 실제로 검증·설치한 결과입니다. 모든 skill�
 
 - 검증·설치 기준일: **2026-07-25**
 - 대상 에이전트: **Claude Code**
-- 총 설치: **2,419개 skill** · **264 MB** · 전 파일 frontmatter 검증 완료(invalid 0)
+- 전체 카탈로그: **2,419개 skill** 검증 완료(invalid 0) — 10개 저장소 라이선스 허용 범위 전체
+- **현재 활성 프로파일: 제약 R&D 핵심 376개 (40 MB)** ← `trim.sh` 적용 상태
+
+> **활성 상태**: 컨텍스트 비용(~530K 토큰)을 줄이기 위해 **핵심 376개만 활성화**되어
+> 있습니다. 전체 2,419개를 복원하려면 `./setup.sh`, 다시 핵심만 남기려면 `./trim.sh`.
+
+### 🎯 현재 활성 프로파일 (제약 R&D 핵심 376개)
+| 출처 | 개수 | 비고 |
+|---|:--:|---|
+| K-Dense + NVIDIA BioNeMo | 180 | 신약탐색·ADMET·docking·단백질설계 종합 |
+| Google DeepMind (`gdm-`) | 38 | AlphaFold/AlphaGenome/ChEMBL/OpenTargets/PDB/UniProt |
+| Anthropic (`anthropic-`) | 6 (+MCP) | 임상 protocol·scvi-tools·Nextflow + MCP DB |
+| GPTomics bioSkills 핵심 (`bio-`) | 152 | chemoinformatics·structural-biology·clinical-biostatistics·clinical-databases·differential-expression·pathway-analysis·single-cell·proteomics·variant-calling·immunoinformatics·workflows |
+| **합계** | **376** | |
+
+> 정리로 제거된 것(복원 가능): OpenClaw(582)·AIPOCH(604)·ToolUniverse(153)·ClawBio(95)·
+> BioMate(200) 전체 + bioSkills 비핵심 카테고리(409). 필요 시 `./setup.sh`로 전체 복원.
 
 ---
 
@@ -103,7 +119,8 @@ single-cell, proteomics, structural-biology.
   문법 오류(미인용 콜론 등)를 정리.
 - **용량 정리**: 번들 예제 데이터 파일(>1MB, csv/gz/rds 등)은 제거. SKILL.md 지침과
   스크립트는 그대로이며, 분석 시 사용자 데이터를 사용하면 됨.
-- **재설치/업데이트**: `./setup.sh` (10개 저장소, 라이선스 허용 범위 전체 재현).
+- **전체 설치/복원**: `./setup.sh` (10개 저장소, 라이선스 허용 범위 2,419개 전체 재현).
+- **핵심만 정리**: `./trim.sh` (제약 R&D 핵심 376개 프로파일로 감축).
 - **재현 스크립트**: `scripts/vendor_skills.py` (frontmatter 정규화 복사기).
 
 ## 📌 검증 방법
